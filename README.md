@@ -1,3 +1,3 @@
 # HotelBooking
-An online hotel booking system
+An online hotel booking system.
 What the name says.
