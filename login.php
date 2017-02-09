@@ -17,16 +17,16 @@ input[type=text], input[type=password] {
 button {
     background-color: #4CAF50;
     color: white;
-    padding: 14px 20px;
+    padding: 16px 24px;
     margin: 8px 0;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    width: 100%;
 }
 
 .cancelbtn {
     width: auto;
-    padding: 10px 18px;
+    padding: 12px 22px;
     background-color: #f44336;
 }
 
@@ -41,7 +41,7 @@ img.avatar {
 }
 
 .container {
-    padding: 16px;
+    padding: 16px 200px;
 }
 
 span.psw {
