@@ -25,8 +25,8 @@ Table hoteldetails:-
 +-----+------------+-------+
 | hid | name       | price |
 +-----+------------+-------+
-|   1 | Taj        |     0 |
-|   2 | Wonder     |     0 |
-|   3 | Maratha    |     0 |
-|   4 | Prominence |     0 |
+|   1 | Taj        | 20000 |
+|   2 | Wonder     |  1000 |
+|   3 | Maratha    | 10000 |
+|   4 | Prominence |  5000 |
 +-----+------------+-------+
