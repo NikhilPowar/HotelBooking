@@ -3,8 +3,8 @@
 <body>
 
 <?php
-  $unameErr = $pswErr = "";
-  $uname = $psw = "";
+  $unameErr = $pswErr = $credErr = "";
+  $uname = $psw = $role = "";
   session_start();
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = test_input($_POST["uname"]);
@@ -17,11 +17,28 @@
       $pswErr = "Only letters allowed";
     }
 
+    $role=$_POST["role"];
+
     if(strcmp($unameErr, "")==0 and strcmp($pswErr, "")==0){
       $_SESSION['username']=$uname;
       $_SESSION['password']=$psw;
-      include 'config.php';
-      header("Location: http://localhost/Project/homepage.php");
+      $_SESSION['role']=$role;
+      require 'config.php';
+      $stmt = mysqli_stmt_init($conn);
+      if (mysqli_stmt_prepare($stmt, "select name, password, role from users where name=?")) {
+        mysqli_stmt_bind_param($stmt, 's', $name);
+        $name=$uname;
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $n, $p, $r);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+        if($n==$uname and $psw==$p and $r==$role){
+          header("Location: http://localhost/Project/homepage.php");
+        }
+        else {
+          $credErr = "Invalid credentials.";
+        }
+      }
     }
   }
 
@@ -48,11 +65,18 @@
     <span class="error">* <?php echo $pswErr;?></span>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
+    <select name="role">
+      <option value="customer">Customer</option>
+      <option value="manager">Manager</option>
+      <option value="admin">Admin</option>
+    </select>
+
     <button type="submit">Login</button>
 
     <button type="button" class="cancelbtn">Cancel</button>
 
-    <a href="signup.php">New User? Sign up here.</a>
+    <a href="signup.php">New User? Sign up here.</a><br>
+    <span class="error"><?php echo $credErr;?></span>
   </div>
 </form>
 </form-text>
