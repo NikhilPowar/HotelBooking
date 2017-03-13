@@ -1,0 +1,32 @@
+This file contains the sample of tables used in project.
+
+Table users:-
+
++-------+----------+-----------------+----------+
+| name  | password | email           | role     |
++-------+----------+-----------------+----------+
+| troll | troll    | troll@troll.com | customer |
+| spam  | spam     | spam@gmail.com  | customer |
++-------+----------+-----------------+----------+
+
+Table hotel:-
+
++-------------+---------+------------+------+
+| state       | city    | name       | hid  |
++-------------+---------+------------+------+
+| Maharashtra | Mumbai  | Taj        |    1 |
+| Karnataka   | Manipal | Wonder     |    2 |
+| Maharashtra | Pune    | Maratha    |    3 |
+| Karnataka   | Belgaum | Prominence |    4 |
++-------------+---------+------------+------+
+
+Table hoteldetails:-
+
++-----+------------+-------+
+| hid | name       | price |
++-----+------------+-------+
+|   1 | Taj        |     0 |
+|   2 | Wonder     |     0 |
+|   3 | Maratha    |     0 |
+|   4 | Prominence |     0 |
++-----+------------+-------+
