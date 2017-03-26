@@ -7,6 +7,10 @@ Table users:-
 +-------+----------+-----------------+----------+
 | troll | troll    | troll@troll.com | customer |
 | spam  | spam     | spam@gmail.com  | customer |
+| ram   | ram      | ram@gmail.com   | manager  |
+| lol   | lol      | lol@gmail.com   | manager  |
+| boi   | boi      | boi@gmail.com   | manager  |
+| pyro  | pyro     | pyro@gmail.com  | manager  |
 +-------+----------+-----------------+----------+
 
 Table hotel:-
@@ -22,11 +26,19 @@ Table hotel:-
 
 Table hoteldetails:-
 
-+-----+------------+-------+
-| hid | name       | price |
-+-----+------------+-------+
-|   1 | Taj        | 20000 |
-|   2 | Wonder     |  1000 |
-|   3 | Maratha    | 10000 |
-|   4 | Prominence |  5000 |
-+-----+------------+-------+
++-----+------------+-------+---------+
+| hid | name       | price | manager |
++-----+------------+-------+---------+
+|   1 | Taj        | 20000 | ram     |
+|   2 | Wonder     |  1000 | lol     |
+|   3 | Maratha    | 10000 | boi     |
+|   4 | Prominence |  5000 | pyro    |
++-----+------------+-------+---------+
+
+Table history:-
+
++-------+------+------------+------------+------------+
+| uname | hid  | fromDate   | toDate     | totalPrice |
++-------+------+------------+------------+------------+
+| troll |    2 | 03/27/2017 | 03/31/2017 |       5000 |
++-------+------+------------+------------+------------+
