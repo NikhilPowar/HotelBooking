@@ -33,7 +33,10 @@
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
         if($n==$uname and $psw==$p and $r==$role){
-          header("Location: http://localhost/Project/homepage.php");
+          if($r=="customer")
+            header("Location: http://localhost/Project/homepage.php");
+          else if($r=="manager")
+            header("Location: http://localhost/Project/managerhome.php");
         }
         else {
           $credErr = "Invalid credentials.";
