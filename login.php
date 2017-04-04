@@ -37,6 +37,8 @@
             header("Location: http://localhost/Project/homepage.php");
           else if($r=="manager")
             header("Location: http://localhost/Project/managerhome.php");
+          else if($r=="admin")
+            header("Location: http://localhost/Project/adminhome.php");
         }
         else {
           $credErr = "Invalid credentials.";
@@ -53,7 +55,7 @@
   }
 ?>
 <form-header>
-<h2>Login Form</h2>
+<h2>Login</h2>
 <p align="center"><span class="error">* required field.</span></p>
 </form-header>
 <form-text>

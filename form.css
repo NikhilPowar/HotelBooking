@@ -13,7 +13,7 @@ form-text{
     font-variant: small-caps;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 10px 0;
@@ -63,14 +63,4 @@ span.psw {
 
 .error{
   color:#FF0000;
-}
-
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-
-    }
 }

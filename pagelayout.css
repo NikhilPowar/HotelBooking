@@ -1,0 +1,30 @@
+#container{
+  margin-top: 50px;
+  margin-left: 200px;
+}
+#sidebar-wrapper{
+  width: 200px;
+  background: #000;
+  position:fixed;
+  height:100%;
+}
+.sidebar-nav{
+  position: absolute;
+  top: 0;
+  width: 200px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav>li>a{
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  line-height: 50px;
+  padding-left: 50px;
+}
+.sidebar-nav>li>a:hover, .sidebar-nav>li.active{
+  color: #999;
+  background: rgba(255,255,255, 0.2);
+  text-decoration: none;
+}
