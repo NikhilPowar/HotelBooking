@@ -12,6 +12,7 @@
 <?php
   require 'header.php';
   require 'sidebar.php';
+  require 'phpmailer\PHPMailer_5.2.4\class.phpmailer.php';
   echo "<div id='container'>";
   session_start();
   if(!isset($_SESSION['username'])){
@@ -20,7 +21,7 @@
     exit("");
   }
   require 'config.php';
-  echo'Payment successful.<br>
+  echo'<p><h4 style="text-align:left;">Payment successful.<br>
     Booking Details:<br>
     Hotel name : '.$_SESSION['hname'].'<br>
     From Date : '.$_SESSION['from'].'<br>
@@ -45,7 +46,42 @@
     }
   }
   echo "Time : ".$_SESSION['time']."
-  </div>";
+  </h4></p>";
+
+  $mail = new PHPMailer;
+
+  $mail->IsSMTP();
+  $mail->Mailer = "smtp";
+  $mail->Host = 'smtp.gmail.com';
+  $mail->SMTPAuth = true;
+  $mail->Username = 'vjtihotelbooking@gmail.com';
+  $mail->Password = 'vjtihotelbooking123';
+  $mail->SMTPSecure = 'tls';
+  $mail->Port = 587;
+
+  $mail->SetFrom('vjtihotelbooking@gmail.com', 'Hotel Booking');
+  $mail->AddReplyTo('vjtihotelbooking@gmail.com', 'Hotel Booking');
+  $mail->AddAddress($_SESSION['email']);
+
+  $msg = 'Thank you for using our website for your booking.<br>
+    Use the printed form of this mail as receipt to be shown at the hotel.<br>
+    Booking Details:<br>
+    Hotel name : '.$_SESSION['hname'].'<br>
+    From Date : '.$_SESSION['from'].'<br>
+    To Date   : '.$_SESSION['to'].'<br>
+    Amount Paid : &#8377;'.$_SESSION['totalPrice'].'<br>
+    Time : '.$_SESSION['time'];
+
+  $mail->Subject = "Payment Success";
+  $mail->MsgHTML($msg);
+  echo "<p><h4>";
+  if(!$mail->Send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo . '</div>';
+  } else {
+    echo 'Message has been sent to your email-id</div>';
+  }
+  echo "</h4></p>";
   mysqli_stmt_close($stmt);
 ?>
 </body>

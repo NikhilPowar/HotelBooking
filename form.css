@@ -1,5 +1,6 @@
 form {
     border: 0px solid #f1f1f1;
+    text-align: left;
 }
 
 form-header{
@@ -51,7 +52,6 @@ img.avatar {
 .container {
     margin: auto;
     width: 40%;
-    min-height: 300px;
     min-width: 400px;
     padding: 16px 20px;
 }

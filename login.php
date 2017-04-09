@@ -1,5 +1,8 @@
 <html>
-<link rel="stylesheet" type="text/css" href="form.css">
+<head>
+  <link rel="stylesheet" type="text/css" href="form.css">
+  <title>Login</title>
+</head>
 <body>
 
 <?php
@@ -25,14 +28,15 @@
       $_SESSION['role']=$role;
       require 'config.php';
       $stmt = mysqli_stmt_init($conn);
-      if (mysqli_stmt_prepare($stmt, "select name, password, role from users where name=?")) {
+      if (mysqli_stmt_prepare($stmt, "select name, email, password, role from users where name=?")) {
         mysqli_stmt_bind_param($stmt, 's', $name);
         $name=$uname;
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $n, $p, $r);
+        mysqli_stmt_bind_result($stmt, $n, $e, $p, $r);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
         if($n==$uname and $psw==$p and $r==$role){
+          $_SESSION['email']=$e;
           if($r=="customer")
             header("Location: http://localhost/Project/homepage.php");
           else if($r=="manager")
@@ -78,13 +82,15 @@
 
     <button type="submit">Login</button>
 
-    <button type="button" class="cancelbtn">Cancel</button>
+    <button type="reset" class="cancelbtn">Cancel</button>
 
     <a href="signup.php">New User? Sign up here.</a><br>
     <span class="error"><?php echo $credErr;?></span>
   </div>
 </form>
 </form-text>
-
+<?php
+  require 'footer.php';
+?>
 </body>
 </html>

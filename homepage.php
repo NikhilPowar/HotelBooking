@@ -27,8 +27,8 @@
   }
   </script>";
   $stmt = mysqli_stmt_init($conn);
-  echo "Welcome ".$_SESSION['username']."!<br>
-    What kind of hotels are you looking for today?"; ?>
+  echo "<p><h3>Welcome ".$_SESSION['username']."!<br>
+    Looking for hotels? Search here.</h3></p>"; ?>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <form-header>
   <h2>Search Hotels</h2>
@@ -98,15 +98,19 @@
       .nav-pills > li > a:hover {
         background-color: #005266;
         color: #ffffff;
-      }</style>';
-      echo "</div>";
-      echo '
-      <br>Results:
-      <br><ul class="nav nav-pills nav-stacked col-sm-3">';
-      while (mysqli_stmt_fetch($stmt)){
-        echo '<li><a href="hotelinfo.php?id='.$id.'"><h4>'.$hotels.'</h4><div class="text-right">&#8377;'.$price.'</div></a></li><br>';
       }
-      echo '</ul>';
+      .center-pills{
+        display: inline-block;
+      }</style>';
+      echo '
+      <br><p><h4>Results:</h4></p>
+      <div class="col-md-3 text-center" style="width:100%">
+      <br><ul class="nav nav-pills center-pills nav-justified">';
+      while (mysqli_stmt_fetch($stmt)){
+        echo '<li><a href="hotelinfo.php?id='.$id.'"><h4>'.$hotels.'</h4><div class="text-right">&#8377;'.$price.'</div></a></li><br><br>';
+      }
+      echo '</ul></div>';
+      echo "</div>";
     }
   }
   mysqli_stmt_close($stmt);

@@ -1,6 +1,10 @@
 #container{
   margin-top: 50px;
   margin-left: 200px;
+  padding: 10px 20px;
+}
+p, h3, h4{
+  text-align: center;
 }
 #sidebar-wrapper{
   width: 200px;

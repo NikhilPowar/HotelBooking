@@ -69,11 +69,11 @@
     mysqli_stmt_close($stmt);
   }
   echo "
-  <form method='post' action='payment.php?id=$hid'>;
+  <form method='post' action='payment.php?id=$hid'>
   <div class='container'>
 
     <label><b>Amount Payable</b></label>
-    <input type='text' name='totalPrice' value=&#8377;".$_POST['totalPrice']." readOnly>
+    <input type='text' name='totalPrice' value=".$_POST['totalPrice']." readOnly>
 
     <label><b>Card Number</b></label>
     <span class='error'>*".$cnumErr."</span>
@@ -85,7 +85,7 @@
 
     <button type='submit'>Pay</button>
 
-    <button type='button' class='cancelbtn'>Cancel</button>
+    <button type='reset' class='cancelbtn'>Cancel</button>
     </form>
     </div>
   ";

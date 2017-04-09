@@ -1,11 +1,15 @@
 <html>
-<link rel="stylesheet" type="text/css" href="form.css">
+<head>
+  <link rel="stylesheet" type="text/css" href="form.css">
+  <title>Sign Up</title>
+</head>
 <body>
 
 <?php
   $unameErr = $emailErr = $pswErr = $conpswErr = "";
   $uname = $email = $psw = $conpsw = "";
   session_start();
+  require 'config.php';
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = test_input($_POST["uname"]);
     if (!preg_match("/^[a-zA-Z ]*$/",$uname)) {
@@ -27,20 +31,44 @@
       $conpswErr = "Password doesn't match";
     }
 
+    $stmt = mysqli_stmt_init($conn);
+
     if(strcmp($unameErr, "")==0 and strcmp($pswErr, "")==0 and strcmp($conpswErr, "")==0 and strcmp($emailErr, "")==0){
-      $_SESSION['username']=$uname;
-      $_SESSION['password']=$psw;
-      require 'config.php';
-      $stmt = mysqli_stmt_init($conn);
-      if (mysqli_stmt_prepare($stmt, 'insert into `users` values( ?, ?, ?, "customer")')) {
-        mysqli_stmt_bind_param($stmt, 'sss', $name, $pw, $em);
-        $name=$uname;
-        $pw=$psw;
-        $em=$email;
+      if(mysqli_stmt_prepare($stmt, 'select count(*) from users where name=?')){
+        mysqli_stmt_bind_param($stmt, "s", $u);
+        $u=$uname;
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+        mysqli_stmt_bind_result($stmt, $i);
+        mysqli_stmt_fetch($stmt);
+        if($i!=0){
+          $unameErr = "The username is already taken.";
+        }
       }
-      header("Location: http://localhost/Project/homepage.php");
+      if(mysqli_stmt_prepare($stmt, 'select count(*) from users where email=?')){
+        mysqli_stmt_bind_param($stmt, "s", $e);
+        $e=$email;
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $j);
+        mysqli_stmt_fetch($stmt);
+        if($j!=0){
+          $emailErr = "This email already has an account.";
+        }
+      }
+      if($i==0 and $j==0){
+        $_SESSION['username']=$uname;
+        $_SESSION['email']=$email;
+        $_SESSION['password']=$psw;
+        $_SESSION['role']="customer";
+        if (mysqli_stmt_prepare($stmt, 'insert into `users` values( ?, ?, ?, "customer")')) {
+          mysqli_stmt_bind_param($stmt, 'sss', $name, $pw, $em);
+          $name=$uname;
+          $pw=$psw;
+          $em=$email;
+          mysqli_stmt_execute($stmt);
+          mysqli_stmt_close($stmt);
+          header("Location: http://localhost/Project/homepage.php");
+        }
+      }
     }
   }
 
@@ -78,12 +106,14 @@
 
     <button type="submit">Sign Up</button>
 
-    <button type="button" class="cancelbtn">Cancel</button>
+    <button type="reset" class="cancelbtn">Cancel</button>
 
     <a href="login.php">Have an account? Login Here.</a>
   </div>
 </form>
 </form-text>
-
+<?php
+  require 'footer.php';
+?>
 </body>
 </html>

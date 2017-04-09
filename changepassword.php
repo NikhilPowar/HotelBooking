@@ -75,7 +75,7 @@
 	          $pw=$psw;
 	          mysqli_stmt_execute($stmt);
 	          mysqli_stmt_close($stmt);
-						echo "Password changed successfully.";
+						echo "<p><h4 style='text-align:left'>Password changed successfully.</h4></p>";
 	        }
 				}
       }
@@ -91,7 +91,7 @@
 				<div class="container">
 
         <form action="changepassword.php" method="post">
-        <h2>Change Your Password</h2>
+        <h2 style="text-align: center">Change Your Password</h2>
 
         <label><b>E-mail</b></label>
         <span class="error">* <?php echo $emailErr;?></span>

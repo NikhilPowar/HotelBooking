@@ -30,7 +30,9 @@
     mysqli_stmt_fetch($stmt);
     $paths = explode(";", $imgpth);
     $num = count($paths);
+    echo "<p><h4 style='text-align:left'>";
     echo "Hotel : $name <br>Price per day per room : &#8377;$price<br>Description: $description<br>";
+    echo "</h4></p>";
     echo "<style>
     .carousel{
       margin: auto;

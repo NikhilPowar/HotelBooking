@@ -35,9 +35,9 @@
       mysqli_stmt_execute($stmt);
       mysqli_stmt_close($stmt);
     }
-    echo "Details updated successfully.<br>";
+    echo "<p><h4>Details updated successfully.<br></p></h4>";
   }
-  echo "Welcome ".$_SESSION['username']."! Your hotels details:<br>";
+  echo "<p><h4>Welcome ".$_SESSION['username']."! Your hotels details:<br></p></h4>";
   $stmt = mysqli_stmt_init($conn);
   if(mysqli_stmt_prepare($stmt, "select name, price, hid, description from hotels where manager=?")){
     mysqli_stmt_bind_param($stmt, "s", $uname);

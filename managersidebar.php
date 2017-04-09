@@ -2,7 +2,7 @@
   <nav>
     <ul class="sidebar-nav">
       <li><a href="managerhome.php">Home</a></li>
-      <li><a href=""></a><li>
+      <<li><a href="aboutus.php">About Us</a></li>
     </ul>
   </nav>
 </div>
